@@ -1,0 +1,21 @@
+{
+  "include": ["src"],
+  "compilerOptions": {
+    "lib": ["es6"],
+    "module": "commonjs",
+    "target": "es5",
+    "isolatedModules": true,
+    "declaration": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "outDir": "./lib",
+    "incremental": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitReturns": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  }
+}

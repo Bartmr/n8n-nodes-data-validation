@@ -1,0 +1,85 @@
+{
+  "name": "typescript-library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "types": "lib/types.d.ts",
+  "files": [
+    "lib"
+  ],
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "build": "npm run clean && tsc --project tsconfig.release.json && node scripts/bundle-declaration-references.js",
+    "build:watch": "tsc --project tsconfig.watch.json --watch",
+    "clean": "rimraf lib README.md",
+    "typecheck": "tsc --noEmit",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:cov:changed": "npm run test:cov -- --onlyChanged",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:debug:watch": "npm run test:debug -- --watch",
+    "format": "prettier --write .",
+    "eslint": "eslint . --ext .ts --max-warnings 0",
+    "lint": "npm run eslint -- --fix",
+    "lint:no-fix": "npm run eslint",
+    "precommit": "lint-staged && npm run typecheck && npm run lint:no-fix",
+    "update-all-dependencies": "npm-check-updates -u && rimraf package-lock.json node_modules && npm install",
+    "prepublishOnly": "npm run test && npm run build",
+    "reset-repository": "git clean -Xdf"
+  },
+  "author": "Bartolomeu Rodrigues",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^26.0.22",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "eslint": "^7.24.0",
+    "eslint-config-prettier": "^8.2.0",
+    "glob": "^7.1.6",
+    "jest": "^26.6.3",
+    "lint-staged": "^10.5.4",
+    "npm-check-updates": "^11.4.1",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.5.5",
+    "typescript": "^4.2.4"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": ".",
+    "testMatch": [
+      "**/*.spec.ts"
+    ],
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "isolatedModules": true,
+        "tsconfig": "tsconfig.json"
+      }
+    },
+    "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/src/"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "<rootDir>"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,jsx,json,ts,tsx,scss,sass,css,md}": "prettier --write"
+  }
+}
