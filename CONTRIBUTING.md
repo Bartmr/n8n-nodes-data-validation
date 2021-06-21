@@ -9,4 +9,4 @@ If you found a bug and know how to fix it, just open a Pull Request and we'll gl
 
 ## <a name="new-features"></a> New Features
 
-Right now, we're not expecting suggestions or Pull Requests for new features. We recommend you to extend one of our schema classes and tweak it to your needs, or fork this project and do the changes.
+Right now, we're not expecting suggestions or Pull Requests for new features.
