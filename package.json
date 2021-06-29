@@ -13,7 +13,7 @@
   "scripts": {
     "build": "npm run clean && tsc --project tsconfig.release.json && node scripts/bundle-declaration-references.js",
     "build:watch": "tsc --project tsconfig.watch.json --watch",
-    "clean": "rimraf lib README.md",
+    "clean": "rimraf lib",
     "typecheck": "tsc --noEmit",
     "test": "jest",
     "test:watch": "jest --watch",
