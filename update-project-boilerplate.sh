@@ -33,18 +33,12 @@ To continue with the update write yes and press Enter.
 
   git merge "boilerplate/${git_branch}" --allow-unrelated-histories
 
-  git remote remove boilerplate
-
   echo "
 -----
 -----
 -----
 ----- BEFORE CONTINUING:
 - CHECK IF THE UPDATE DIDN'T FAILED HALFWAY:
-  - Make sure the current git repository is again pointing to your project's repository and NOT to the boilerplate repository.
-    - You can do this by running 'git remote' and checking that there is no remote called 'boilerplate'
-      - If there is a remote called 'boilerplate':
-        - Remove it by running 'git remote remove boilerplate'
   - Confirm that new commits from the project boilerplate are in the project's git history by running 'git log'
     - If no new commits from the project boilerplate are present, you can try running the update script again.
 - If there are git conflicts present, resolve the conflicts by pick the updates you want to add to the project.
