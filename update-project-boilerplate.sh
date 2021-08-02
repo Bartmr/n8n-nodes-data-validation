@@ -31,19 +31,25 @@ To continue with the update write yes and press Enter.
 
   git fetch boilerplate $git_branch
 
-  git merge "boilerplate/${git_branch}" --allow-unrelated-histories
+  git merge "boilerplate/${git_branch}"
 
   echo "
 -----
 -----
 -----
------ BEFORE CONTINUING:
-- CHECK IF THE UPDATE DIDN'T FAILED HALFWAY:
+----- BEFORE CONTINUING
+
+- CHECK IF THE UPDATE DIDN'T FAILED HALFWAY
   - Confirm that new commits from the project boilerplate are in the project's git history by running 'git log'
-    - If no new commits from the project boilerplate are present, you can try running the update script again.
-- If there are git conflicts present, resolve the conflicts by pick the updates you want to add to the project.
-- Run 'npm run install:all', in case any dependencies were changed or added.
-- Run 'git add .' to stage all the accepted updates.
+    - If no new commits from the project boilerplate are present, you can try running the update script again
+
+- If there are git conflicts present, resolve the conflicts by pick the updates you want to add to the project
+
+- Run 'npm install', in case any dependencies were changed or added
+
+- Run 'git add .' to stage all the accepted updates
+
 - IF YOU WANT TO ABORT the update, run 'git merge --abort'
+
 - To finalize the update, run 'git merge --continue'"
 fi
