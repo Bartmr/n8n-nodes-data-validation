@@ -22,10 +22,9 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:debug:watch": "npm run test:debug -- --watch",
     "format": "prettier --write .",
-    "eslint": "eslint . --ext .ts --max-warnings 0",
-    "lint": "npm run eslint -- --fix",
-    "lint:no-fix": "npm run eslint",
-    "precommit": "lint-staged && npm run typecheck && npm run lint:no-fix",
+    "lint": "eslint --ext .ts --max-warnings 0 .",
+    "lint:fix": "eslint --ext .ts --max-warnings 0 --fix .",
+    "precommit": "lint-staged && npm run typecheck && npm run lint",
     "update-all-dependencies": "npm-check-updates -u && rimraf package-lock.json node_modules && npm install",
     "prepublishOnly": "npm run test && npm run build",
     "reset-repository": "git clean -Xdf"
