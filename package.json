@@ -28,7 +28,8 @@
     "precommit": "lint-staged && npm run integrity-check",
     "update-all-dependencies": "npm-check-updates -u && rimraf package-lock.json node_modules && npm install",
     "reset-repository": "git clean -Xdf",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "pre-merge-commit": "npm install && npm run integrity-check"
   },
   "author": "Bartolomeu Rodrigues",
   "license": "MIT",
