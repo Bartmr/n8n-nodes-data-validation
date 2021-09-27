@@ -27,7 +27,6 @@
     "integrity-check": "npm run typecheck && npm run lint",
     "precommit": "lint-staged && npm run integrity-check",
     "update-all-dependencies": "npm-check-updates -u && rimraf package-lock.json node_modules && npm install",
-    "prepublishOnly": "npm run test && npm run build",
     "reset-repository": "git clean -Xdf"
   },
   "author": "Bartolomeu Rodrigues",
