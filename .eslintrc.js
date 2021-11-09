@@ -4,7 +4,7 @@ module.exports = {
     project: "tsconfig.json",
     sourceType: "module",
   },
-  plugins: ["@typescript-eslint/eslint-plugin"],
+  plugins: ["@typescript-eslint/eslint-plugin", "node"],
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -51,5 +51,6 @@ module.exports = {
     "@typescript-eslint/unbound-method": "error",
     "no-console": "error",
     "no-debugger": "error",
+    "node/no-process-env": "error",
   },
 };
