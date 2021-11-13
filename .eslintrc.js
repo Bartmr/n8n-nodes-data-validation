@@ -41,12 +41,6 @@ module.exports = {
       "error",
       { ignoreVoid: false, ignoreIIFE: false },
     ],
-    "@typescript-eslint/no-implicit-any-catch": [
-      "error",
-      {
-        allowExplicitAny: false,
-      },
-    ],
     "@typescript-eslint/no-unnecessary-condition": "error",
     "@typescript-eslint/unbound-method": "error",
     "no-console": "error",
