@@ -26,7 +26,7 @@
     "lint:fix": "eslint --ext .ts --max-warnings 0 --fix .",
     "integrity-check": "npm run typecheck && npm run lint && npm run test",
     "precommit": "lint-staged && npm run integrity-check",
-    "update-all-dependencies": "npm-check-updates -u && rimraf package-lock.json node_modules && npm install",
+    "update-all-dependencies": "npm-check-updates --reject @types/node -u && rimraf package-lock.json node_modules && npm install",
     "reset-repository": "git clean -Xdf",
     "prepare": "husky install",
     "pre-merge-commit": "npm install && npm run integrity-check"
