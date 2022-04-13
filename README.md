@@ -5,3 +5,15 @@
 - Setup Github Actionsto deploy when a new release is created
   - Set `NPM_TOKEN` as an Action Secret
   - rename `.github/workflows-template` to `.github/workflows`
+
+### Changing the supported Node version
+
+- Files to be changed
+  - .nvmrc
+  - Dockerfile.dev
+  - package.json
+    - `engine` field
+    - `@types/node` version
+  - tsconfig.json
+- delete all `node_modules` directories and `package-lock.json` files
+- run `npm run install`
