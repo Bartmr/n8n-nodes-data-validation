@@ -1,4 +1,6 @@
-## Setting up a new project
+## Library development
+
+### Setting up a new project
 
 - Follow [Estirador's](https://github.com/Bartmr/estirador) instructions on creating a new project
 - Change the `LICENCE`, `CONTRIBUTING` and `license` field in `package.json` according to your needs
