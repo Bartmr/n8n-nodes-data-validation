@@ -7,3 +7,5 @@ ENV PATH="${PATH}:/home/node/.npm-global/bin"
 
 RUN apt-get update \
   && apt-get install -y nano
+
+USER node
