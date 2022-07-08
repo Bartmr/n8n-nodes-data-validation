@@ -1,0 +1,4 @@
+{
+  "dep": ["prod", "dev", "bundle", "optional", "peer"],
+  "reject": ["@types/node"]
+}
