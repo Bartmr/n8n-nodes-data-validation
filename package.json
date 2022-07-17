@@ -19,7 +19,7 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:cov:changed": "npm run test:cov -- --onlyChanged",
-    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand --testTimeout=86400000",
     "test:debug:watch": "npm run test:debug -- --watch",
     "format": "prettier --write .",
     "lint": "eslint --ext .ts --max-warnings 0 .",
