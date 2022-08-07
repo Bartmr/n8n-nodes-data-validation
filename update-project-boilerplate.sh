@@ -46,8 +46,6 @@ To continue with the update write yes and press Enter.
 
 - Check if any of the changes made by the updates require a new migration to be written
 
-- Run 'npm run integrity-check:all' to make sure the updates didn't break any part of your project
-
 - Run 'git add .' to stage all the accepted updates
 
 - IF YOU WANT TO ABORT the update, run 'git merge --abort'
