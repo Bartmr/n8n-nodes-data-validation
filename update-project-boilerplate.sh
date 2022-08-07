@@ -27,6 +27,7 @@ To continue with the update write yes and press Enter.
   git add .
   git reset --hard
 
+  git remote remove boilerplate
   git remote add boilerplate $git_url
 
   git fetch boilerplate $git_branch
