@@ -1,5 +1,5 @@
 {
-  "name": "n8n-nodes-data-validator",
+  "name": "n8n-nodes-data-validation",
   "version": "1.0.0",
   "description": "",
   "keywords": [
@@ -8,19 +8,22 @@
   "main": "lib/index.js",
   "types": "lib/types.d.ts",
   "files": [
-    "lib"
+    "lib",
+    "assets"
   ],
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [],
-    "nodes": []
+    "nodes": [
+      "lib/nodes/DataValidation/DataValidation.node.js"
+    ]
   },
   "engines": {
     "node": ">=14"
   },
   "scripts": {
-    "build": "npm run clean && tsc --project tsconfig.release.json && node scripts/bundle-declaration-references.js",
-    "build:watch": "tsc --project tsconfig.watch.json --watch",
+    "build": "npm run clean && gulp && tsc --project tsconfig.release.json && node scripts/bundle-declaration-references.js",
+    "build:watch": "gulp && tsc --project tsconfig.watch.json --watch",
     "clean": "rimraf lib",
     "typecheck": "tsc --noEmit",
     "test": "jest",
@@ -44,9 +47,13 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {},
+  "dependencies": {
+    "ajv": "^8.11.0"
+  },
   "devDependencies": {
+    "@types/express": "^4.17.13",
     "@types/jest": "^27.4.1",
+    "@types/request-promise-native": "^1.0.18",
     "@typescript-eslint/eslint-plugin": "^5.15.0",
     "@typescript-eslint/parser": "^5.15.0",
     "eslint": "^8.11.0",
@@ -54,9 +61,12 @@
     "eslint-plugin-n8n-nodes-base": "^1.6.5",
     "eslint-plugin-node": "^11.1.0",
     "glob": "^7.2.0",
+    "gulp": "^4.0.2",
     "husky": "^7.0.4",
     "jest": "^27.5.1",
     "lint-staged": "^12.3.7",
+    "n8n-core": "^0.132.0",
+    "n8n-workflow": "^0.114.0",
     "npm-check-updates": "^12.5.4",
     "prettier": "^2.6.0",
     "rimraf": "^3.0.2",
@@ -96,10 +106,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Bartmr/n8n-nodes-data-validator.git"
+    "url": "https://github.com/Bartmr/n8n-nodes-data-validation.git"
   },
   "bugs": {
-    "url": "https://github.com/Bartmr/n8n-nodes-data-validator/issues"
+    "url": "https://github.com/Bartmr/n8n-nodes-data-validation/issues"
   },
-  "homepage": "https://github.com/Bartmr/n8n-nodes-data-validator"
+  "homepage": "https://github.com/Bartmr/n8n-nodes-data-validation"
 }

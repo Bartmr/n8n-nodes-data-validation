@@ -9,3 +9,5 @@ RUN apt-get update \
   && apt-get install -y nano
 
 USER node
+
+RUN npm install n8n -g
