@@ -1,12 +1,20 @@
 {
-  "name": "typescript-library",
+  "name": "n8n-nodes-data-validator",
   "version": "1.0.0",
   "description": "",
+  "keywords": [
+    "n8n-community-node-package"
+  ],
   "main": "lib/index.js",
   "types": "lib/types.d.ts",
   "files": [
     "lib"
   ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [],
+    "nodes": []
+  },
   "engines": {
     "node": ">=14"
   },
@@ -43,6 +51,7 @@
     "@typescript-eslint/parser": "^5.15.0",
     "eslint": "^8.11.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-n8n-nodes-base": "^1.6.5",
     "eslint-plugin-node": "^11.1.0",
     "glob": "^7.2.0",
     "husky": "^7.0.4",
@@ -84,5 +93,13 @@
   },
   "lint-staged": {
     "*.{js,jsx,json,ts,tsx,scss,sass,css,md,yml,yaml}": "prettier --write"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bartmr/n8n-nodes-data-validator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Bartmr/n8n-nodes-data-validator/issues"
+  },
+  "homepage": "https://github.com/Bartmr/n8n-nodes-data-validator"
 }
