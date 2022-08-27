@@ -39,8 +39,9 @@ export class DataValidation implements INodeType {
           2
         ),
         placeholder: "",
+        // eslint-disable-next-line n8n-nodes-base/node-param-description-miscased-json
         description:
-          "Visit https://ajv.js.org/ or https://JSON-schema.org/ to learn how to describe your validation rules in JSON Schemas",
+          "Visit https://ajv.js.org/ or https://json-schema.org/ to learn how to describe your validation rules in JSON Schemas",
       },
     ],
   };
