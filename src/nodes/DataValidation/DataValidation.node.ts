@@ -13,7 +13,7 @@ export class DataValidation implements INodeType {
     name: "dataValidation",
     group: ["transform"],
     version: 1,
-    description: "Validate incoming data before continuing the workflow",
+    description: "Validate input data before continuing the workflow",
     defaults: {
       name: "Data Validation",
       color: "#000000",
