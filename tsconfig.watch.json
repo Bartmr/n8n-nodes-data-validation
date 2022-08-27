@@ -1,4 +1,7 @@
 {
   "extends": "./tsconfig.json",
-  "exclude": ["**/*.*spec.ts", "**/spec/**/*.ts"]
+  "exclude": ["**/*.*spec.ts", "**/spec/**/*.ts"],
+  "compilerOptions": {
+    "tsBuildInfoFile": "./lib/watch.tsbuildinfo"
+  }
 }

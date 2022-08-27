@@ -3,6 +3,7 @@
   "exclude": ["**/*.*spec.ts", "**/spec/**/*.ts"],
   "compilerOptions": {
     "incremental": false,
-    "sourceMap": false
+    "sourceMap": false,
+    "tsBuildInfoFile": "./lib/release.tsbuildinfo"
   }
 }

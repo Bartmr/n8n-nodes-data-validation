@@ -9,6 +9,8 @@
     "removeComments": false,
     "sourceMap": true,
     "outDir": "./lib",
+    "rootDir": "./src",
+    "tsBuildInfoFile": "./lib/default.tsbuildinfo",
     "incremental": true,
     "strict": true,
     "noUncheckedIndexedAccess": true,
