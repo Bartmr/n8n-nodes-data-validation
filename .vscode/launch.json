@@ -6,6 +6,18 @@
       "request": "attach",
       "name": "Attach to debugger",
       "port": 9229
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug n8n",
+      "program": "n8n",
+      "args": ["start"],
+      "cwd": "/home/node/.npm-global/lib/node_modules/n8n/bin",
+      "outFiles": ["${workspaceFolder}/lib/*.js"],
+      "env": {
+        "EXECUTIONS_PROCESS": "main"
+      }
     }
   ]
 }
