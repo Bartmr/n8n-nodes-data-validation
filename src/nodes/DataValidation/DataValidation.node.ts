@@ -3,7 +3,7 @@ import {
   INodeExecutionData,
   INodeType,
   INodeTypeDescription,
-  NodeOperationError,
+  NodeApiError,
 } from "n8n-workflow";
 import Ajv, { Schema } from "ajv";
 
@@ -36,7 +36,7 @@ export class DataValidation implements INodeType {
 }`,
         placeholder: "",
         description:
-          "Visit https://JSON-schema.org/ to learn how to describe your validation rules in JSON Schemas",
+          "Visit https://ajv.js.org/ or https://JSON-schema.org/ to learn how to describe your validation rules in JSON Schemas",
       },
     ],
   };
@@ -45,65 +45,60 @@ export class DataValidation implements INodeType {
     const items = this.getInputData();
     const returnData: INodeExecutionData[] = [];
 
+    const jsonSchemaString = this.getNodeParameter("myString", 0, "");
+
+    if (typeof jsonSchemaString !== "string") {
+      throw new NodeApiError(this.getNode(), {
+        message: "Invalid JSON Schema",
+      });
+    }
+
+    let jsonSchema: Schema;
+
+    try {
+      jsonSchema = JSON.parse(jsonSchemaString) as Schema;
+    } catch (err) {
+      throw new NodeApiError(this.getNode(), {
+        message: "Invalid JSON Schema",
+      });
+    }
+
+    const ajv = new Ajv();
+    let validate: ReturnType<typeof ajv["compile"]>;
+
+    try {
+      validate = ajv.compile(jsonSchema);
+    } catch (err) {
+      throw new NodeApiError(this.getNode(), {
+        message: "Invalid JSON Schema",
+      });
+    }
+
     for (let itemIndex = 0; itemIndex < items.length; itemIndex++) {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const item = items[itemIndex]!;
 
-      const jsonSchemaString = this.getNodeParameter("myString", itemIndex, "");
+      const json = item["json"];
 
-      if (typeof jsonSchemaString !== "string") {
-        throw new NodeOperationError(
-          this.getNode(),
-          new Error("Invalid JSON Schema"),
-          {
-            itemIndex,
-          }
-        );
-      }
-
-      let jsonSchema: Schema;
-
-      try {
-        jsonSchema = JSON.parse(jsonSchemaString) as Schema;
-      } catch (err) {
-        throw new NodeOperationError(
-          this.getNode(),
-          new Error("Invalid JSON Schema"),
-          {
-            itemIndex,
-          }
-        );
-      }
-
-      const ajv = new Ajv();
-      let validate: ReturnType<typeof ajv["compile"]>;
-
-      try {
-        validate = ajv.compile(jsonSchema);
-      } catch (err) {
-        throw new NodeOperationError(
-          this.getNode(),
-          new Error("Invalid JSON Schema"),
-          {
-            itemIndex,
-          }
-        );
-      }
-
-      const valid = validate(item["json"]);
+      const valid = validate(json);
 
       if (!valid) {
-        throw new NodeOperationError(
+        throw new NodeApiError(
           this.getNode(),
-          JSON.stringify(validate.errors, undefined, 4),
+          {
+            errors: JSON.stringify(validate.errors, undefined, 4),
+          },
           {
             itemIndex,
+            message: "Invalid data",
+            description: JSON.stringify(validate.errors, undefined, 4),
+            httpCode: "400",
           }
         );
       }
 
       returnData.push({
-        json: {},
+        json,
         pairedItem: {
           item: itemIndex,
         },
