@@ -25,15 +25,19 @@ export class DataValidation implements INodeType {
         displayName: "JSON Schema",
         name: "jsonSchema",
         type: "json",
-        default: `{
-		type: "object",
-		properties: {
-			foo: {type: "integer"},
-			bar: {type: "string"}
-		},
-		required: ["foo"],
-		additionalProperties: false,
-}`,
+        default: JSON.stringify(
+          {
+            type: "object",
+            properties: {
+              foo: { type: "integer" },
+              bar: { type: "string" },
+            },
+            required: ["foo"],
+            additionalProperties: false,
+          },
+          undefined,
+          2
+        ),
         placeholder: "",
         description:
           "Visit https://ajv.js.org/ or https://JSON-schema.org/ to learn how to describe your validation rules in JSON Schemas",
@@ -45,7 +49,7 @@ export class DataValidation implements INodeType {
     const items = this.getInputData();
     const returnData: INodeExecutionData[] = [];
 
-    const jsonSchemaString = this.getNodeParameter("myString", 0, "");
+    const jsonSchemaString = this.getNodeParameter("jsonSchema", 0);
 
     if (typeof jsonSchemaString !== "string") {
       throw new NodeApiError(this.getNode(), {
@@ -105,6 +109,6 @@ export class DataValidation implements INodeType {
       });
     }
 
-    return [returnData];
+    return this.prepareOutputData(returnData);
   }
 }
