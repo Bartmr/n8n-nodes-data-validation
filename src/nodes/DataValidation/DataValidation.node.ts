@@ -4,6 +4,7 @@ import {
   INodeType,
   INodeTypeDescription,
   NodeApiError,
+  NodeOperationError,
 } from "n8n-workflow";
 import Ajv, { Schema } from "ajv";
 
@@ -25,6 +26,9 @@ export class DataValidation implements INodeType {
         displayName: "JSON Schema",
         name: "jsonSchema",
         type: "json",
+        typeOptions: {
+          alwaysOpenEditWindow: true,
+        },
         default: JSON.stringify(
           {
             type: "object",
@@ -53,9 +57,7 @@ export class DataValidation implements INodeType {
     const jsonSchemaString = this.getNodeParameter("jsonSchema", 0);
 
     if (typeof jsonSchemaString !== "string") {
-      throw new NodeApiError(this.getNode(), {
-        message: "Invalid JSON Schema",
-      });
+      throw new NodeOperationError(this.getNode(), "Invalid JSON Schema");
     }
 
     let jsonSchema: Schema;
@@ -63,9 +65,7 @@ export class DataValidation implements INodeType {
     try {
       jsonSchema = JSON.parse(jsonSchemaString) as Schema;
     } catch (err) {
-      throw new NodeApiError(this.getNode(), {
-        message: "Invalid JSON Schema",
-      });
+      throw new NodeOperationError(this.getNode(), "Invalid JSON Schema");
     }
 
     const ajv = new Ajv();
@@ -74,9 +74,7 @@ export class DataValidation implements INodeType {
     try {
       validate = ajv.compile(jsonSchema);
     } catch (err) {
-      throw new NodeApiError(this.getNode(), {
-        message: "Invalid JSON Schema",
-      });
+      throw new NodeOperationError(this.getNode(), "Invalid JSON Schema");
     }
 
     for (let itemIndex = 0; itemIndex < items.length; itemIndex++) {
