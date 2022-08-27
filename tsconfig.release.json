@@ -1,9 +1,7 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "./tsconfig.base.json",
   "exclude": ["**/*.*spec.ts", "**/spec/**/*.ts"],
   "compilerOptions": {
-    "incremental": false,
-    "sourceMap": false,
-    "tsBuildInfoFile": "./lib/release.tsbuildinfo"
+    "incremental": false
   }
 }
