@@ -22,8 +22,8 @@
     "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand --testTimeout=86400000",
     "test:debug:watch": "npm run test:debug -- --watch",
     "format": "prettier --write .",
-    "lint": "eslint --ext .ts --max-warnings 0 .",
-    "lint:fix": "eslint --ext .ts --max-warnings 0 --fix .",
+    "lint": "eslint --ext .ts,.tsx --max-warnings 0 .",
+    "lint:fix": "eslint --ext .ts,.tsx --max-warnings 0 --fix .",
     "integrity-check": "npm run typecheck && npm run lint && npm run test",
     "precommit": "lint-staged && npm run integrity-check",
     "update-all-dependencies": "npm-check-updates --upgrade && rimraf package-lock.json node_modules && npm install",
@@ -58,14 +58,16 @@
     "moduleFileExtensions": [
       "js",
       "json",
-      "ts"
+      "ts",
+      "tsx"
     ],
     "rootDir": ".",
     "testMatch": [
-      "**/*.spec.ts"
+      "**/*.spec.ts",
+      "**/*.spec.tsx"
     ],
     "transform": {
-      "^.+\\.ts$": "ts-jest"
+      "\\.tsx?$": "ts-jest"
     },
     "globals": {
       "ts-jest": {
